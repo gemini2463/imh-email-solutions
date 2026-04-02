@@ -8,7 +8,15 @@ foreach (glob($plugin_dir . 'imh-*.php') as $filename) {
     $system = basename($filename, '.php');
     // Get the second line from the file (title)
     $lines = file($filename);
-    $title = isset($lines[1]) ? trim(preg_replace('/^\/\/\s*/', '', $lines[1])) : $system;
+    // Try to extract title from PHP comment on line 2
+    $title = $system;
+    if (isset($lines[1])) {
+        $line = trim($lines[1]);
+        // Match "// Title" pattern
+        if (preg_match('/^\/\/\s*(.+)$/', $line, $m)) {
+            $title = trim($m[1]);
+        }
+    }
     $plugins[] = [
         'system' => $system,
         'title' => $title
