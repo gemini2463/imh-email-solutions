@@ -1,4 +1,4 @@
-# Email Solutions (imh-email-solutions), v0.0.1
+# Email Solutions (imh-email-solutions), v0.0.2
 
 **Canonical name:** Email Solutions
 
